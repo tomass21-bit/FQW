@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ResolveNugetPackages>false</ResolveNugetPackages>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E978EBB4-39B5-3E16-94FA-AC6B69FB3DEC}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\GIT\FQW\libpqxx\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/GIT/FQW/libpqxx/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+C:\Qt\Tools\CMake_64\bin\cmake.exe -SD:/GIT/FQW/Spider -BD:/GIT/FQW/Spider/build --check-stamp-file D:/GIT/FQW/Spider/build/libpqxx-build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CMakeConfigurableFile.in;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CMakeDetermineCompileFeatures.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CMakeFindDependencyMacro.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CMakePackageConfigHelpers.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CPack.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CPackComponent.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckCXXSourceCompiles.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckFunctionExists.c;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckFunctionExists.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckIncludeFileCXX.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckSymbolExists.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\FindPackageHandleStandardArgs.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\FindPackageMessage.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\FindPostgreSQL.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\GNUInstallDirs.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\Internal\CheckSourceCompiles.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\Internal\FeatureTesting.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\SelectLibraryConfigurations.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\WriteBasicConfigVersionFile.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Templates\CPackConfig.cmake.in;D:\GIT\FQW\Spider\build\libpqxx-build\include\pqxx\config_cmake.h.in;D:\GIT\FQW\libpqxx\cmake\config.cmake;D:\GIT\FQW\libpqxx\cmake\libpqxx-config.cmake;D:\GIT\FQW\libpqxx\config-tests\charconv_float.cxx;D:\GIT\FQW\libpqxx\config-tests\charconv_int.cxx;D:\GIT\FQW\libpqxx\config-tests\cmp.cxx;D:\GIT\FQW\libpqxx\config-tests\concepts.cxx;D:\GIT\FQW\libpqxx\config-tests\cxa_demangle.cxx;D:\GIT\FQW\libpqxx\config-tests\fs.cxx;D:\GIT\FQW\libpqxx\config-tests\gcc_pure.cxx;D:\GIT\FQW\libpqxx\config-tests\gcc_visibility.cxx;D:\GIT\FQW\libpqxx\config-tests\likely.cxx;D:\GIT\FQW\libpqxx\config-tests\multidim-subscript.cxx;D:\GIT\FQW\libpqxx\config-tests\need_fslib.cxx;D:\GIT\FQW\libpqxx\config-tests\sleep_for.cxx;D:\GIT\FQW\libpqxx\config-tests\span.cxx;D:\GIT\FQW\libpqxx\config-tests\strerror_r.cxx;D:\GIT\FQW\libpqxx\config-tests\strerror_s.cxx;D:\GIT\FQW\libpqxx\config-tests\thread_local.cxx;D:\GIT\FQW\libpqxx\config-tests\unreachable.cxx;D:\GIT\FQW\libpqxx\config-tests\year_month_day.cxx;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\GIT\FQW\Spider\build\libpqxx-build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/GIT/FQW/libpqxx/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+C:\Qt\Tools\CMake_64\bin\cmake.exe -SD:/GIT/FQW/Spider -BD:/GIT/FQW/Spider/build --check-stamp-file D:/GIT/FQW/Spider/build/libpqxx-build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CMakeConfigurableFile.in;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CMakeDetermineCompileFeatures.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CMakeFindDependencyMacro.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CMakePackageConfigHelpers.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CPack.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CPackComponent.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckCXXSourceCompiles.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckFunctionExists.c;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckFunctionExists.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckIncludeFileCXX.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckSymbolExists.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\FindPackageHandleStandardArgs.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\FindPackageMessage.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\FindPostgreSQL.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\GNUInstallDirs.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\Internal\CheckSourceCompiles.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\Internal\FeatureTesting.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\SelectLibraryConfigurations.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\WriteBasicConfigVersionFile.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Templates\CPackConfig.cmake.in;D:\GIT\FQW\Spider\build\libpqxx-build\include\pqxx\config_cmake.h.in;D:\GIT\FQW\libpqxx\cmake\config.cmake;D:\GIT\FQW\libpqxx\cmake\libpqxx-config.cmake;D:\GIT\FQW\libpqxx\config-tests\charconv_float.cxx;D:\GIT\FQW\libpqxx\config-tests\charconv_int.cxx;D:\GIT\FQW\libpqxx\config-tests\cmp.cxx;D:\GIT\FQW\libpqxx\config-tests\concepts.cxx;D:\GIT\FQW\libpqxx\config-tests\cxa_demangle.cxx;D:\GIT\FQW\libpqxx\config-tests\fs.cxx;D:\GIT\FQW\libpqxx\config-tests\gcc_pure.cxx;D:\GIT\FQW\libpqxx\config-tests\gcc_visibility.cxx;D:\GIT\FQW\libpqxx\config-tests\likely.cxx;D:\GIT\FQW\libpqxx\config-tests\multidim-subscript.cxx;D:\GIT\FQW\libpqxx\config-tests\need_fslib.cxx;D:\GIT\FQW\libpqxx\config-tests\sleep_for.cxx;D:\GIT\FQW\libpqxx\config-tests\span.cxx;D:\GIT\FQW\libpqxx\config-tests\strerror_r.cxx;D:\GIT\FQW\libpqxx\config-tests\strerror_s.cxx;D:\GIT\FQW\libpqxx\config-tests\thread_local.cxx;D:\GIT\FQW\libpqxx\config-tests\unreachable.cxx;D:\GIT\FQW\libpqxx\config-tests\year_month_day.cxx;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\GIT\FQW\Spider\build\libpqxx-build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/GIT/FQW/libpqxx/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+C:\Qt\Tools\CMake_64\bin\cmake.exe -SD:/GIT/FQW/Spider -BD:/GIT/FQW/Spider/build --check-stamp-file D:/GIT/FQW/Spider/build/libpqxx-build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CMakeConfigurableFile.in;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CMakeDetermineCompileFeatures.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CMakeFindDependencyMacro.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CMakePackageConfigHelpers.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CPack.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CPackComponent.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckCXXSourceCompiles.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckFunctionExists.c;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckFunctionExists.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckIncludeFileCXX.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckSymbolExists.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\FindPackageHandleStandardArgs.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\FindPackageMessage.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\FindPostgreSQL.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\GNUInstallDirs.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\Internal\CheckSourceCompiles.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\Internal\FeatureTesting.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\SelectLibraryConfigurations.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\WriteBasicConfigVersionFile.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Templates\CPackConfig.cmake.in;D:\GIT\FQW\Spider\build\libpqxx-build\include\pqxx\config_cmake.h.in;D:\GIT\FQW\libpqxx\cmake\config.cmake;D:\GIT\FQW\libpqxx\cmake\libpqxx-config.cmake;D:\GIT\FQW\libpqxx\config-tests\charconv_float.cxx;D:\GIT\FQW\libpqxx\config-tests\charconv_int.cxx;D:\GIT\FQW\libpqxx\config-tests\cmp.cxx;D:\GIT\FQW\libpqxx\config-tests\concepts.cxx;D:\GIT\FQW\libpqxx\config-tests\cxa_demangle.cxx;D:\GIT\FQW\libpqxx\config-tests\fs.cxx;D:\GIT\FQW\libpqxx\config-tests\gcc_pure.cxx;D:\GIT\FQW\libpqxx\config-tests\gcc_visibility.cxx;D:\GIT\FQW\libpqxx\config-tests\likely.cxx;D:\GIT\FQW\libpqxx\config-tests\multidim-subscript.cxx;D:\GIT\FQW\libpqxx\config-tests\need_fslib.cxx;D:\GIT\FQW\libpqxx\config-tests\sleep_for.cxx;D:\GIT\FQW\libpqxx\config-tests\span.cxx;D:\GIT\FQW\libpqxx\config-tests\strerror_r.cxx;D:\GIT\FQW\libpqxx\config-tests\strerror_s.cxx;D:\GIT\FQW\libpqxx\config-tests\thread_local.cxx;D:\GIT\FQW\libpqxx\config-tests\unreachable.cxx;D:\GIT\FQW\libpqxx\config-tests\year_month_day.cxx;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\GIT\FQW\Spider\build\libpqxx-build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/GIT/FQW/libpqxx/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+C:\Qt\Tools\CMake_64\bin\cmake.exe -SD:/GIT/FQW/Spider -BD:/GIT/FQW/Spider/build --check-stamp-file D:/GIT/FQW/Spider/build/libpqxx-build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CMakeConfigurableFile.in;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CMakeDetermineCompileFeatures.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CMakeFindDependencyMacro.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CMakePackageConfigHelpers.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CPack.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CPackComponent.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckCXXSourceCompiles.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckFunctionExists.c;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckFunctionExists.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckIncludeFileCXX.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckSymbolExists.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\FindPackageHandleStandardArgs.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\FindPackageMessage.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\FindPostgreSQL.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\GNUInstallDirs.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\Internal\CheckSourceCompiles.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\Internal\FeatureTesting.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\SelectLibraryConfigurations.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\WriteBasicConfigVersionFile.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.24\Templates\CPackConfig.cmake.in;D:\GIT\FQW\Spider\build\libpqxx-build\include\pqxx\config_cmake.h.in;D:\GIT\FQW\libpqxx\cmake\config.cmake;D:\GIT\FQW\libpqxx\cmake\libpqxx-config.cmake;D:\GIT\FQW\libpqxx\config-tests\charconv_float.cxx;D:\GIT\FQW\libpqxx\config-tests\charconv_int.cxx;D:\GIT\FQW\libpqxx\config-tests\cmp.cxx;D:\GIT\FQW\libpqxx\config-tests\concepts.cxx;D:\GIT\FQW\libpqxx\config-tests\cxa_demangle.cxx;D:\GIT\FQW\libpqxx\config-tests\fs.cxx;D:\GIT\FQW\libpqxx\config-tests\gcc_pure.cxx;D:\GIT\FQW\libpqxx\config-tests\gcc_visibility.cxx;D:\GIT\FQW\libpqxx\config-tests\likely.cxx;D:\GIT\FQW\libpqxx\config-tests\multidim-subscript.cxx;D:\GIT\FQW\libpqxx\config-tests\need_fslib.cxx;D:\GIT\FQW\libpqxx\config-tests\sleep_for.cxx;D:\GIT\FQW\libpqxx\config-tests\span.cxx;D:\GIT\FQW\libpqxx\config-tests\strerror_r.cxx;D:\GIT\FQW\libpqxx\config-tests\strerror_s.cxx;D:\GIT\FQW\libpqxx\config-tests\thread_local.cxx;D:\GIT\FQW\libpqxx\config-tests\unreachable.cxx;D:\GIT\FQW\libpqxx\config-tests\year_month_day.cxx;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\GIT\FQW\Spider\build\libpqxx-build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\GIT\FQW\Spider\build\ZERO_CHECK.vcxproj">
+      <Project>{BA68CE4A-8EEF-3B45-A30C-3C801A9FC0C0}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\GIT\FQW\Spider\build\libpqxx-build\src\pqxx.vcxproj">
+      <Project>{11C8BA72-D008-367D-92EF-A50999712FF2}</Project>
+      <Name>pqxx</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\GIT\FQW\Spider\build\libpqxx-build\test\runner.vcxproj">
+      <Project>{245E083B-BC57-39FE-810F-95DB5AF5A2D2}</Project>
+      <Name>runner</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

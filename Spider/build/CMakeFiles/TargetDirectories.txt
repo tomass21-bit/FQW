@@ -1,0 +1,16 @@
+D:/GIT/FQW/Spider/build/CMakeFiles/Spider.dir
+D:/GIT/FQW/Spider/build/CMakeFiles/PACKAGE.dir
+D:/GIT/FQW/Spider/build/CMakeFiles/INSTALL.dir
+D:/GIT/FQW/Spider/build/CMakeFiles/ALL_BUILD.dir
+D:/GIT/FQW/Spider/build/CMakeFiles/ZERO_CHECK.dir
+D:/GIT/FQW/Spider/build/libpqxx-build/CMakeFiles/PACKAGE.dir
+D:/GIT/FQW/Spider/build/libpqxx-build/CMakeFiles/INSTALL.dir
+D:/GIT/FQW/Spider/build/libpqxx-build/CMakeFiles/ALL_BUILD.dir
+D:/GIT/FQW/Spider/build/libpqxx-build/src/CMakeFiles/pqxx.dir
+D:/GIT/FQW/Spider/build/libpqxx-build/src/CMakeFiles/PACKAGE.dir
+D:/GIT/FQW/Spider/build/libpqxx-build/src/CMakeFiles/INSTALL.dir
+D:/GIT/FQW/Spider/build/libpqxx-build/include/CMakeFiles/PACKAGE.dir
+D:/GIT/FQW/Spider/build/libpqxx-build/include/CMakeFiles/INSTALL.dir
+D:/GIT/FQW/Spider/build/libpqxx-build/test/CMakeFiles/runner.dir
+D:/GIT/FQW/Spider/build/libpqxx-build/test/CMakeFiles/PACKAGE.dir
+D:/GIT/FQW/Spider/build/libpqxx-build/test/CMakeFiles/INSTALL.dir

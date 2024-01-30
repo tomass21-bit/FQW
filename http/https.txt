@@ -1,0 +1,258 @@
+include <boost/beast/core.hpp>
+#include <boost/beast/http.hpp>
+#include <boost/beast/version.hpp>
+#include <boost/asio/connect.hpp>
+#include <boost/asio/ip/tcp.hpp>
+#include <boost/asio/ssl/error.hpp>
+#include <boost/asio/ssl/stream.hpp>
+#include <boost/asio/thread_pool.hpp>
+#include <cstdlib>
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <regex>
+#include <queue>
+#include <vector>
+#include <thread>
+#include <mutex>
+#include <functional>
+#include <iomanip>
+#include "gumbo.h"
+ 
+using tcp = boost::asio::ip::tcp;
+namespace ssl = boost::asio::ssl;
+namespace http = boost::beast::http;
+ 
+class loader
+{
+public:
+    loader(boost::asio::io_context& ioc_) : ioc(ioc_) {}
+ 
+    std::vector<std::string> findLinks(std::string const& sBody)
+    {
+        std::vector<std::string> vLinks;
+ 
+        GumboOutput* output = gumbo_parse(sBody.c_str());
+ 
+        std::queue<GumboNode*> qn;
+        qn.push(output->root);
+ 
+        while (!qn.empty())
+        {
+            GumboNode* node = qn.front();
+            qn.pop();
+ 
+            if (GUMBO_NODE_ELEMENT == node->type)
+            {
+                GumboAttribute* href = nullptr;
+                if (node->v.element.tag == GUMBO_TAG_A && (href = gumbo_get_attribute(&node->v.element.attributes, "href")))
+                {
+                    vLinks.push_back(href->value);
+                }
+ 
+                GumboVector* children = &node->v.element.children;
+                for (unsigned int i = 0; i < children->length; ++i)
+                {
+                    qn.push(static_cast<GumboNode*>(children->data[i]));
+                }
+            }
+        }
+ 
+        gumbo_destroy_output(&kGumboDefaultOptions, output);
+ 
+        return vLinks;
+    }
+ 
+    void load(std::string const& sUri, std::vector<std::string>& vres)
+    {
+        std::smatch mr;
+        if (std::regex_match(sUri, mr, rUri))
+        {
+            for (auto const& sm : mr)
+            {
+                {
+                    //std::lock_guard<std::mutex> lg{ mtx };
+                    //std::cout << sm << std::endl;
+                }
+            }
+ 
+            if (mr[1].str() == "http")
+            {
+                vres = loadHttp(mr);
+            }
+            else
+            {
+                vres = loadHttps(mr);
+            }
+        }
+        else
+        {
+            {
+                std::lock_guard<std::mutex> lg{ mtx };
+                std::cerr << "load() std::regex_match() failed: " + sUri << "\n\n";
+            }
+        }
+    }
+ 
+    std::vector<std::string> loadHttp(std::smatch const& mr)
+    {
+        std::vector<std::string> vLinks;
+        try {
+            std::string const target = (mr[3].length() == 0 ? "/" : mr[3].str());
+            int version = 11; // или 10 для http 1.0
+ 
+            tcp::socket socket{ ioc };
+            tcp::resolver resolver{ ioc };
+            auto const results = resolver.resolve(mr[2], "80");
+            boost::asio::connect(socket, results.begin(), results.end());
+            http::request<http::string_body> req{ http::verb::get, target, version };
+            req.set(http::field::host, mr[2]);
+            req.set(http::field::user_agent, BOOST_BEAST_VERSION_STRING);
+            http::write(socket, req);
+            boost::beast::flat_buffer buffer;
+            http::response<http::dynamic_body> res;
+            http::read(socket, buffer, res);
+ 
+            std::string sBody = boost::beast::buffers_to_string(res.body().data());
+            //std::ofstream ofs{ "out.txt" }; // запись html-страницы в файл
+            //ofs << sBody;
+            //ofs.close();
+ 
+            vLinks = findLinks(sBody);
+ 
+            boost::system::error_code ec;
+            socket.shutdown(tcp::socket::shutdown_both, ec);
+            if (ec && ec != boost::system::errc::not_connected)
+                throw boost::system::system_error{ ec };
+ 
+        }
+        catch (std::exception const& e)
+        {
+            {
+                std::lock_guard<std::mutex> lg{ mtx };
+                std::cerr << "loadHttp(): " << e.what() << std::endl;
+            }
+        }
+        return vLinks;
+    }
+ 
+    std::vector<std::string> loadHttps(std::smatch const& mr)
+    {
+        std::vector<std::string> vLinks;
+        try {
+ 
+            std::string const host = mr[2];
+            std::string const target = (mr[3].length() == 0 ? "/" : mr[3].str());
+            int version = 11; // или 10 для http 1.0
+ 
+            ssl::context ctx{ ssl::context::sslv23_client };
+            load_root_certificates(ctx);
+            ssl::stream<tcp::socket> stream{ ioc, ctx };
+            if (!SSL_set_tlsext_host_name(stream.native_handle(), host.c_str()))
+            {
+                boost::system::error_code ec{ static_cast<int>(::ERR_get_error()), boost::asio::error::get_ssl_category() };
+                throw boost::system::system_error{ ec };
+            }
+            tcp::resolver resolver{ ioc };
+            auto const results = resolver.resolve(host, "443");
+            boost::asio::connect(stream.next_layer(), results.begin(), results.end());
+            stream.handshake(ssl::stream_base::client);
+            http::request<http::string_body> req{ http::verb::get, target, version };
+            req.set(http::field::host, host);
+            req.set(http::field::user_agent, BOOST_BEAST_VERSION_STRING);
+            http::write(stream, req);
+            boost::beast::flat_buffer buffer;
+            http::response<http::dynamic_body> res;
+            http::read(stream, buffer, res);
+ 
+            std::string sBody = boost::beast::buffers_to_string(res.body().data());
+            //std::ofstream ofs{ "out.txt" }; // запись html-страницы в файл
+            //ofs << sBody;
+            //ofs.close();
+ 
+            vLinks = findLinks(sBody);
+ 
+            boost::system::error_code ec;
+            stream.shutdown(ec);
+            if (ec == boost::asio::error::eof)
+            {
+                // Rationale:
+                // http://stackoverflow.com/questions/25587403/boost-asio-ssl-async-shutdown-always-finishes-with-an-error
+                ec.assign(0, ec.category());
+            }
+            if (ec)
+                throw boost::system::system_error{ ec };
+ 
+        }
+        catch (std::exception const& e)
+        {
+            {
+                std::lock_guard<std::mutex> lg{ mtx };
+                std::cerr << "loadHttps(): " << e.what() << std::endl;
+            }
+        }
+        return vLinks;
+    }
+ 
+    loader(loader const&) = delete;
+    loader& operator=(loader const&) = delete;
+ 
+private:
+    std::regex rUri{ "^(?:(https?)://)([^/]+)(/.*)?" };
+    std::mutex mtx;
+    boost::asio::io_context& ioc;
+};
+ 
+// протестировано в MSVS2017
+int main()
+{
+    system("chcp 1251");
+ 
+    boost::asio::io_context ioc;
+    loader ldr{ ioc };
+ 
+    std::vector<std::string> vUri
+    {
+        "https://www.boost.org/doc/libs/1_69_0/libs/beast/example/http/client/sync-ssl/http_client_sync_ssl.cpp" // начальная ссылка
+    };
+ 
+    std::vector<std::vector<std::string>> vres;
+ 
+    int dpth = 2; // глубина обхода
+    while (dpth--)
+    {
+        vres.clear();
+        vres.reserve(vUri.size()); // чтобы не переаллоцировался
+ 
+        // вектор vUri обрабатывается пулом из 4 потоков
+        boost::asio::thread_pool tpool{ 4 };
+        for (auto const& sUri : vUri)
+        {
+            vres.emplace_back();
+            boost::asio::post(tpool, std::bind(&loader::load, &ldr, std::cref(sUri), std::ref(vres.back())));
+        }
+        tpool.join();
+ 
+        // вывод результата
+        std::cout << "\nСтраниц: " << vUri.size() << " **************************************************************************************************\n\n";
+        for(int i = 0; i < vres.size(); ++i)
+        {
+            std::cout << "Ссылок: " << std::setw(6) << std::left << vres.at(i).size() << vUri.at(i) << "\n\n";
+            for (auto const& str : vres.at(i))
+            {
+                //std::cout << str << std::endl; // вывод найденных ссылок
+            }
+        }
+ 
+        // перед заходом на следующую итерацию перекидываем все найденные ссылки из vres в vUri 
+        vUri.clear();
+        for (auto const& vct : vres)
+        {
+            vUri.insert(vUri.end(), vct.begin(), vct.end());
+        }
+    }
+ 
+}
+
+Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления	Подробности
+Ошибка	LNK2019	ссылка на неразрешенный внешний символ BIO_ctrl_pending в функции "private: enum boost::asio::ssl::detail::engine::want __cdecl boost::asio::ssl::detail::engine::perform(int (__cdecl boost::asio::ssl::detail::engine::*)(void *,unsigned __int64),void *,unsigned __int64,class boost::system::error_code &,unsigned __int64 *)" (?perform@engine@detail@ssl@asio@boost@@AEAA?AW4want@12345@P812345@EAAHPEAX_K@Z01AEAVerror_code@system@5@PEA_K@Z).	http	D:\GIT\education\http\http\http.obj	1		
