@@ -1,4 +1,4 @@
-#include "D:/GIT/FQW/boost_1_82_0/libs/beast/example/common/root_certificates.hpp"
+#include "../../boost_1_82_0/libs/beast/example/common/root_certificates.hpp"
 #include <boost/beast/core.hpp>
 #include <boost/beast/http.hpp>
 #include <boost/beast/version.hpp>
@@ -29,19 +29,26 @@ class loader
 public:
     loader(boost::asio::io_context& ioc_) : ioc(ioc_) {}
 
-    std::vector<std::string> get_href(std::string& page) {
+    std::vector<std::string> get_href(std::string& page,std::string host) {
         const std::sregex_token_iterator End;
         std::vector<std::string> vLinks;
         const std::regex r("<a href=\"(.*?)\"");
+        std::string hosts = "https://" + host;
         std::smatch m;
         size_t end = page.find("</html>");
         
+
             if (regex_search(page, m, r)&&end!= std::string::npos) {
                 for (std::sregex_token_iterator i(page.begin(), page.end(), r, 1); i != End; ++i)
                 {
+                    std::string temp = *i;
+                    if (temp[0] == '/') {
+                        vLinks.push_back(hosts+temp);
+                    }
+                    else
+                        
+                      vLinks.push_back(temp);
 
-                    //vLinks.push_back(*i);
-                    std::cout << *i << std::endl; // *i only yields the captured part
                 }
 
                        
@@ -108,7 +115,7 @@ public:
             //ofs << sBody;
             //ofs.close();
 
-            vLinks = get_href(sBody);
+            vLinks = get_href(sBody,host);
 
             boost::system::error_code ec;
             socket.shutdown(tcp::socket::shutdown_both, ec);
@@ -156,11 +163,11 @@ public:
             http::read(stream, buffer, res);
 
             std::string sBody = boost::beast::buffers_to_string(res.body().data());
-            std::ofstream ofs{ "out.txt" }; // запись html-страницы в файл
-            ofs << sBody;
-            ofs.close();
+            //std::ofstream ofs{ "out.txt" }; // запись html-страницы в файл
+           // ofs << sBody;
+            //ofs.close();
 
-            vLinks = get_href(sBody);
+            vLinks = get_href(sBody,host);
 
             boost::system::error_code ec;
             stream.shutdown(ec);
